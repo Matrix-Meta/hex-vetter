@@ -63,8 +63,12 @@ function scanAllSkills() {
                 const sourceData = fs.readFileSync(filePath);
                 const hashes = getHashes(sourceData);
                 
-                // Prepended report with hashes
-                const fullReport = `SOURCE_FILE: ${filePath}\nSHA256: ${hashes.sha256}\nMD5: ${hashes.md5}\n\n${auditOutput}`;
+                // Final metadata for self-verification
+                const metaHeader = `SOURCE_FILE: ${filePath}\nSHA256: ${hashes.sha256}\nMD5: ${hashes.md5}\n`;
+                const selfHash = crypto.createHash('sha256').update(metaHeader + auditOutput).digest('hex');
+                
+                // Prepend report with hashes and a self-integrity signature
+                const fullReport = `${metaHeader}SELF_SIGNATURE: ${selfHash}\n\n${auditOutput}`;
                 
                 // Write the full hex dump and report to a central location
                 fs.writeFileSync(outputPath, fullReport);
