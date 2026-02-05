@@ -11,7 +11,7 @@ Deep hex-level analysis of skill files to detect what text-based reviewers miss.
 ## Usage
 
 ```bash
-python vet.py <file_path>
+node vet.js <file_path>
 ```
 
 ## What it detects
