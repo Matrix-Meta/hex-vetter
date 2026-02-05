@@ -15,11 +15,16 @@ function getAllFiles(dirPath, arrayOfFiles) {
     files.forEach(function(file) {
         const fullPath = path.join(dirPath, file);
         if (fs.statSync(fullPath).isDirectory()) {
-            if (file !== '.git' && file !== 'node_modules') {
+            // IGNORE Git, node_modules, and cache to prevent update conflicts
+            if (file !== '.git' && file !== 'node_modules' && file !== '__pycache__') {
                 arrayOfFiles = getAllFiles(fullPath, arrayOfFiles);
             }
         } else {
-            arrayOfFiles.push(fullPath);
+            // IGNORE local configs and lockfiles that cause merge conflicts
+            const ignoredFiles = ['config.json', 'package-lock.json', '.env', '.gitignore', 'audit_summary.md'];
+            if (!ignoredFiles.includes(file) && !file.endsWith('.hex.txt')) {
+                arrayOfFiles.push(fullPath);
+            }
         }
     });
 
