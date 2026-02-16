@@ -11,8 +11,37 @@ Physical-layer hex auditing skill for AI agents. Detects hidden binary data, con
 
 ## Installation
 
+### Prerequisites
+
+- Node.js 18+
+- npm or pnpm
+
+### Steps
+
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/Matrix-Meta/hex-vetter.git
+   cd hex-vetter
+   ```
+
+2. Install dependencies:
+   ```bash
+   npm install
+   # or
+   pnpm install
+   ```
+
+3. Verify installation:
+   ```bash
+   node -e "const { scanFile } = require('./vet.js'); console.log('OK');"
+   ```
+
+### As OpenClaw Skill
+
+If using with OpenClaw, the skill is typically installed via:
 ```bash
-# Already installed as OpenClaw skill
+clawhub install hex-vetter
+# or copy to skills directory
 ```
 
 ## Usage
