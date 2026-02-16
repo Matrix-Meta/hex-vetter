@@ -31,6 +31,9 @@ hex-vetter/
 ├── verify.js            # 完整性驗證
 ├── vet.js               # 主入口
 ├── .primal_anchor       # 時間戳記種子
+├── .gitignore
+├── LICENSE              # GPLv3
+├── README.md
 └── SKILL.md            # 技能說明
 ```
 
