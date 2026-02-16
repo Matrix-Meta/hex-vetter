@@ -67,6 +67,7 @@ function analyzeHex(filePath) {
     const nonAsciiRatio = totalBytes > 0 ? nonAsciiCount / totalBytes : 0;
     if (nullBytesCount > 0 || controlCharsCount > 0 || foundSig) {
         console.log("🔴 HIGH RISK: Suspicious patterns or hidden binary detected.");
+        console.log("⚠️  ATTENTION: Manual inspection by Human or Agent is MANDATORY for HIGH RISK files.");
     } else if (nonAsciiRatio > 0.1) {
         console.log("🟡 MEDIUM RISK: High non-ASCII density.");
     } else {
